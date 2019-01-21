@@ -1,3 +1,18 @@
+"""
+==========================================================================
+                         b o o t s t r a p . p y
+---------------------------------------------------------------------------
+This code is provided by the module supervisor and edited as part of 
+requirments of CE888 Data Science and Decision Making.
+
+This code implements the bootstrap algorithm.
+
+Author          : Tomoko Ayakawa
+Created on      : 21 Jan 2019
+Last modified on: 21 Jan 2019
+===========================================================================
+"""
+
 import matplotlib
 matplotlib.use('Agg')
 import pandas as pd
