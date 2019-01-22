@@ -32,11 +32,11 @@ def boostrap(sample, sample_size, iterations):
         # store the means
         means.append (np.mean (boot_samples))
     
-    # obtain the mean, min and max of the boot sample means    
+    # obtain the mean, 5% & 95% percentile of the boot sample means    
     means = np.array (means)
     data_mean = np.mean (means)
-    lower = np.amin (means)
-    upper = np.amax (means)
+    lower = np.percentile (means, 5)
+    upper = np.percentile (means, 95)
     
     return data_mean, lower, upper
 
