@@ -1,7 +1,7 @@
 # ce888labs
 Lab works for CE888 Data Science and Decision Making
 
-##Lab 2<br>
+## Lab 2<br>
 (1) Generate a histogram and scatter plot for Current and New Fleets (vehicles.csv).
 ![logo](./labs/lab2/vehicles_plot.png?raw=true) 
 
