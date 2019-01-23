@@ -9,7 +9,7 @@ Lab works for CE888 Data Science and Decision Making
 ![logo](./labs/lab2/bootstrap_confidence.png?raw=true) 
 
 (3) Compare the lower and upper mean bounds for Current and New Fleets (vehicles.csv).
-![logo](./labs/lab2/bootstrap2_Current Fleet.png?raw=true) 
-
+![logo](./labs/lab2/bootstrap2_Current\ Fleet.png?raw=true) 
+![logo](./labs/lab2/bootstrap2_New\ Fleet.png?raw=true) 
 
 (4) Write a function for power analysis
