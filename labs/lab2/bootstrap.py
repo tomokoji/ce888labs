@@ -99,8 +99,8 @@ if __name__ == "__main__":
             data = df[header].dropna()
             
             lower, upper = get_lower_upper(data)
-            print ("\n- Lower bound with %d iteration: %.5f\n" \
-                   "- Upper bound with %d iteration: %.5f\n" \
+            print ("\n- Lower bound with %d iterations: %.5f\n" \
+                   "- Upper bound with %d iterations: %.5f\n" \
                    % (max_iteration, lower, max_iteration, upper))
             
-            plt.savefig ('bootstrap2_%s.png' % header)	
+            plt.savefig ('bootstrap2_%s.png' % header.replace (" ", "_"))	
