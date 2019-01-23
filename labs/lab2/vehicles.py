@@ -21,9 +21,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-# set variables
-src_f = './vehicles.csv'
-
 def histogram (data, name):
     sns.distplot(data, bins=20, kde=False, rug=True, \
                  label=name).get_figure()
@@ -43,7 +40,7 @@ def scatter (data, name):
     
 if __name__ == '__main__':
     # read a csv file
-    df = pd.read_csv(src_f)
+    df = pd.read_csv('./vehicles.csv')
 
     fig = plt.figure (figsize = (7, 10))    
     # histogram
