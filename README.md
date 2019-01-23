@@ -2,17 +2,17 @@
 Lab works for CE888 Data Science and Decision Making
 
 ## Lab 2<br>
-(1) Generate a histogram and scatter plot for Current and New Fleets (vehicles.csv).
+### (1) Generate a histogram and scatter plot for Current and New Fleets (vehicles.csv).
 ![logo](./labs/lab2/vehicles_plot.png?raw=true) 
 
-(2) Write a function for bootstrap and plot the lower, upper bounds of the mean (salaries.csv).
+### (2) Write a function for bootstrap and plot the lower, upper bounds of the mean (salaries.csv).
 ![logo](./labs/lab2/bootstrap_confidence.png?raw=true) 
 
-(3) Compare the lower and upper mean bounds for Current and New Fleets (vehicles.csv).<br>
-Current Fleets<br>
+### (3) Compare the lower and upper mean bounds for Current and New Fleets (vehicles.csv).<br>
+#### Current Fleets<br>
 ![logo](./labs/lab2/bootstrap2_Current_fleet.png?raw=true)
 
-New Fleets<br>
+#### New Fleets<br>
 ![logo](./labs/lab2/bootstrap2_New_Fleet.png?raw=true) 
 
-(4) Write a function for power analysis
+### (4) Write a function for power analysis
