@@ -9,16 +9,20 @@ This code implements the bootstrap algorithm.
 
 Author          : Tomoko Ayakawa
 Created on      : 21 Jan 2019
-Last modified on: 21 Jan 2019
+Last modified on: 23 Jan 2019
 ===========================================================================
 """
 
 import matplotlib
 matplotlib.use('Agg')
 import pandas as pd
+import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
+min_iteration = 100
+max_iteration = 100000
+skip = 1000
 
 def boostrap(sample, sample_size, iterations):
     # <---INSERT YOUR CODE HERE--->
@@ -40,33 +44,63 @@ def boostrap(sample, sample_size, iterations):
     
     return data_mean, lower, upper
 
-
-if __name__ == "__main__":
-    df = pd.read_csv('./salaries.csv')
-
-    data = df.values.T[1]
+def get_lower_upper (data):
     boots = []
-    for i in range(100, 100000, 1000):
+    
+    count = 1
+    for i in range(min_iteration, max_iteration, skip):
+        num = (max_iteration - min_iteration) // skip + 1
+        print ("\r Progress: %d/%d" % (count, num), end = "")
+        
         boot = boostrap(data, data.shape[0], i)
         boots.append([i, boot[0], "mean"])
         boots.append([i, boot[1], "lower"])
         boots.append([i, boot[2], "upper"])
+        
+        count += 1
 
     df_boot = pd.DataFrame(boots, columns=\
                            ['Boostrap Iterations', 'Mean', "Value"])
     sns_plot = sns.lmplot(df_boot.columns[0], df_boot.columns[1], \
                           data=df_boot, fit_reg=False, hue="Value")
 
-    sns_plot.axes[0, 0].set_ylim(0,)
-    sns_plot.axes[0, 0].set_xlim(0, 100000)
+    #sns_plot.axes[0, 0].set_ylim(0,)
+    sns_plot.axes[0, 0].set_xlim(0, max_iteration)
+    
+    return boot[1], boot[2]
+    
+def menu ():
+    print ("Select which exercise to do\n" \
+           " 0) The Bootstrap(1)_salaries.csv\n" \
+           " 1) The Bootstrap(2)_vehicles.csv")
+    ans = input (">>> ")
+    
+    if ans not in ["0", "1"]: ans = None
+    else: ans = int(ans)
+    
+    return (ans)
 
-    sns_plot.savefig("bootstrap_confidence.png", bbox_inches='tight')
-    sns_plot.savefig("bootstrap_confidence.pdf", bbox_inches='tight')
-
-
-    #print ("Mean: %f")%(np.mean(data))
-    #print ("Var: %f")%(np.var(data))
-	
-
-
-	
+if __name__ == "__main__":
+    mode = menu ()
+    
+    if mode == 0:
+        df = pd.read_csv('./salaries.csv')
+        data = df.values.T[1]
+        get_lower_upper(data)
+        
+        plt.savefig("bootstrap_confidence.png", bbox_inches='tight')
+        plt.savefig("bootstrap_confidence.pdf", bbox_inches='tight')
+        
+    elif mode == 1:
+        df = pd.read_csv('./vehicles.csv')
+        
+        for header in df.columns:
+            print (header)
+            data = df[header].dropna()
+            
+            lower, upper = get_lower_upper(data)
+            print ("\n- Lower bound with %d iteration: %.5f\n" \
+                   "- Upper bound with %d iteration: %.5f\n" \
+                   % (max_iteration, lower, max_iteration, upper))
+            
+            plt.savefig ('bootstrap2_%s.png' % header)	
