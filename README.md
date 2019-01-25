@@ -10,7 +10,7 @@ Lab works for CE888 Data Science and Decision Making
 
 ### (3) Compare the lower and upper mean bounds for Current and New Fleets (vehicles.csv).<br>
 #### Current Fleets<br>
-![logo](./labs/lab2/charts/bootstrap2_Current_fleet.png?raw=true)
+![logo](./labs/lab2/charts/bootstrap2_Current_Fleet.png?raw=true)
 
 #### New Fleets<br>
 ![logo](./labs/lab2/charts/bootstrap2_New_Fleet.png?raw=true) 
