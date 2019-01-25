@@ -9,7 +9,7 @@ This code reads a csv file and create histograms and scatterplots.
 
 Author          : Tomoko Ayakawa
 Created on      : 21 Jan 2019
-Last modified on: 21 Jan 2019
+Last modified on: 25 Jan 2019
 ===========================================================================
 """
 
@@ -55,5 +55,5 @@ if __name__ == '__main__':
         scatter (df [header].dropna (), header)       
 
     # save a picture file
-    plt.savefig ('vehicles_plot.png')
+    plt.savefig ('charts/vehicles_plot.png')
     

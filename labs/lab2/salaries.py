@@ -1,3 +1,15 @@
+"""
+===========================================================================
+                         s a l a r i e s . p y
+---------------------------------------------------------------------------
+This code is provided by the module supervisor.
+The path to store histgrams is modefied by Tomoko Ayakawa.
+
+Provided on     : 21 Jan 2019
+Last modified on: 25 Jan 2019
+===========================================================================
+"""
+
 import matplotlib
 matplotlib.use('Agg')
 import pandas as pd
@@ -43,8 +55,8 @@ if __name__ == "__main__":
 	axes.set_xlabel('Millons of pounds in sales') 
 	axes.set_ylabel('Sales count')
 
-	sns_plot2.savefig("histogram.png",bbox_inches='tight')
-	sns_plot2.savefig("histogram.pdf",bbox_inches='tight')
+	sns_plot2.savefig("charts/histogram.png",bbox_inches='tight')
+	sns_plot2.savefig("charts/histogram.pdf",bbox_inches='tight')
 
 
 	

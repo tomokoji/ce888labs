@@ -88,8 +88,8 @@ if __name__ == "__main__":
         data = df.values.T[1]
         get_lower_upper(data)
         
-        plt.savefig("bootstrap_confidence.png", bbox_inches='tight')
-        plt.savefig("bootstrap_confidence.pdf", bbox_inches='tight')
+        plt.savefig("charts/bootstrap_confidence.png", bbox_inches='tight')
+        plt.savefig("charts/bootstrap_confidence.pdf", bbox_inches='tight')
         
     elif mode == 1:
         df = pd.read_csv('./vehicles.csv')
@@ -103,4 +103,4 @@ if __name__ == "__main__":
                    "- Upper bound with %d iterations: %.5f\n" \
                    % (max_iteration, lower, max_iteration, upper))
             
-            plt.savefig ('bootstrap2_%s.png' % header.replace (" ", "_"))	
+            plt.savefig ('charts/bootstrap2_%s.png' % header.replace (" ", "_"))	
