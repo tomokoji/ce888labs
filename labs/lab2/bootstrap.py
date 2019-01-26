@@ -9,7 +9,7 @@ This code implements the bootstrap algorithm.
 
 Author          : Tomoko Ayakawa
 Created on      : 21 Jan 2019
-Last modified on: 23 Jan 2019
+Last modified on: 26 Jan 2019
 ===========================================================================
 """
 
@@ -26,12 +26,11 @@ skip = 1000
 
 def boostrap(sample, sample_size, iterations):
     # <---INSERT YOUR CODE HERE--->
-
     means = []
     for i in range (iterations):
         # create a random array 
-        randn = np.random.randint(sample_size - 1, size=(1, sample_size))
-        boot_samples = [sample[i] for i in randn]
+        boot_samples = np.random.choice(sample, size=sample.shape, \
+                                        replace=True)
     
         # store the means
         means.append (np.mean (boot_samples))
@@ -64,7 +63,6 @@ def get_lower_upper (data):
     sns_plot = sns.lmplot(df_boot.columns[0], df_boot.columns[1], \
                           data=df_boot, fit_reg=False, hue="Value")
 
-    #sns_plot.axes[0, 0].set_ylim(0,)
     sns_plot.axes[0, 0].set_xlim(0, max_iteration)
     
     return boot[1], boot[2]
@@ -103,4 +101,5 @@ if __name__ == "__main__":
                    "- Upper bound with %d iterations: %.5f\n" \
                    % (max_iteration, lower, max_iteration, upper))
             
-            plt.savefig ('charts/bootstrap2_%s.png' % header.replace (" ", "_"))	
+            plt.savefig ('charts/bootstrap2_%s.png' % \
+                         header.replace (" ", "_"))	
