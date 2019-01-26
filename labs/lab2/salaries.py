@@ -37,8 +37,8 @@ if __name__ == "__main__":
 	sns_plot.axes[0,0].set_ylim(0,)
 	sns_plot.axes[0,0].set_xlim(0,)
 
-	sns_plot.savefig("scaterplot.png",bbox_inches='tight')
-	sns_plot.savefig("scaterplot.pdf",bbox_inches='tight')
+	sns_plot.savefig("charts/scaterplot.png",bbox_inches='tight')
+	sns_plot.savefig("charts/scaterplot.pdf",bbox_inches='tight')
 
 	data = df.values.T[1]
 	
