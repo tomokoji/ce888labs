@@ -34,10 +34,10 @@ def power(sample1, sample2, reps, size, alpha):
         #print ("New samples", new_samples)
         
         p_value = permutation (new_samples, 1000, size)
-        if p_value < (1 - alpha):
+        if p_value < alpha:
             count += 1
     
-    power = count / reps
+    power = (count / reps) * 100
     
     return (power)
 
@@ -112,5 +112,5 @@ if __name__ == "__main__":
         # call power analysis function
         power = power (s1, s2, iteration, size, alpha)
         
-        print ("\np-value was smaller than specificity (1-alpha) " \
-               "for %.2f%% of the times" % (power * 100))
+        print ("\np-value was smaller than alpha=%f) " \
+               "for %d%% of the times" % (alpha, power))

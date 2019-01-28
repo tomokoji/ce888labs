@@ -17,4 +17,4 @@ Lab works for CE888 Data Science and Decision Making
 
 ### (4) Write a function for power analysis
 As a sample data vehicles.csv is loaded and repeated bootstrap 1000 times. <br>
-The result shows p-value was smaller than specificity (1-alpha) for 100.00% of the times.
+The result shows p-value was smaller than alpha (0.05) for 100.00% of the times.
