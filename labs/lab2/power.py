@@ -9,7 +9,7 @@ This code does power analysis over two 1D arrays.
 
 Author          : Tomoko Ayakawa
 Created on      : 25 Jan 2019
-Last modified on: 26 Jan 2019
+Last modified on: 28 Jan 2019
 ===========================================================================
 """
 
@@ -19,36 +19,48 @@ import pandas as pd
 import numpy as np
 
 def power(sample1, sample2, reps, size, alpha): 
-    count = 0 # counter for t_perm > t_obs (size)
-    count = 0
+    count = 0 # counter for p-value < 1-alpha
+
     for i in range (reps):
+        # print progress
+        print ("\rBootstrap iteration: %d/%d" % (i, reps), end = "")
+        
         # generate new samples
         new_samples = []
         for s in [sample1, sample2]:
             new_samples.append(np.random.choice
                                (s, size=s.shape, replace=True))
         
-        print ("New samples", new_samples)
+        #print ("New samples", new_samples)
         
+        p_value = permutation (new_samples, 1000, size)
+        if p_value < (1 - alpha):
+            count += 1
+    
+    power = count / reps
+    
+    return (power)
+
+def permutation (new_samples, iteration, size):
+    count = 0 # counter for t_perm > t_obs (size)
+    
+    for i in range (iteration):       
         # concatenete the two samples and permutate it
         new = np.hstack(new_samples)
         new = np.random.choice(new, size=new.shape, replace=False)
         
         # split the permutated array
-        new_1 = new[:len(sample1)]
-        new_2 = new[-len(sample2):]
-        print ("Permutated new samples", new_1, new_2)
+        new_1 = new[:len(new_samples[0])]
+        new_2 = new[-len(new_samples[1]):]
         
         # compare the two samples        
         t_perm = np.mean (new_2) - np.mean (new_1)
         if t_perm > size:
             count += 1
-        print ("t_perm vs t_obs:", t_perm, size)  
-        
-    p_value = count / reps
     
+    p_value = count / iteration
     
-    return (1)
+    return (p_value)
 
 
 def mode ():
@@ -91,7 +103,7 @@ if __name__ == "__main__":
         # enter arguments
         iteration = input ("Enter the iteration times (e.g: 10000): ")
         alpha = input ("Enter the significance level (false positive rate)" \
-                       "in the range of 0 and 1 (e.g: 0.5): ")
+                       "in the range of 0-1 (e.g: 0.05): ")
         
         iteration = int (iteration)
         size = np.mean (s2) - np.mean (s1) 
@@ -100,5 +112,5 @@ if __name__ == "__main__":
         # call power analysis function
         power = power (s1, s2, iteration, size, alpha)
         
-        print ("p-value was smaller than specificity (1-alpha) " \
+        print ("\np-value was smaller than specificity (1-alpha) " \
                "for %.2f%% of the times" % (power * 100))
