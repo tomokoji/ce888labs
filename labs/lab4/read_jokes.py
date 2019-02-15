@@ -14,9 +14,10 @@ Last modified on: 14 February 2019
 # Read jokes from the file
 # -------------------------------------------------------------------------
 def get_jokes():
-    import bs4
-    import glob
+    import glob    
+    import re
 
+    pattern = "<!--begin of joke -->([\w\W]*)<!--end of joke -->"    
     files = glob.glob('./jokes/*.html')
     jokes_list=[]
     
@@ -24,11 +25,10 @@ def get_jokes():
         with open(file , encoding='utf-8') as f:
             html = f.read()
     
-        soup = bs4.BeautifulSoup(html, "html.parser")
-        table = soup.find_all("table")    
-        joke = table[0].find_next().text.strip()
+        joke = re.findall(pattern, html)
+        joke = re.sub("<[\w\W]{1,2}>", "", joke[0])
         jokes_list.append(joke)
-        
+ 
     return jokes_list
 
 # -------------------------------------------------------------------------
